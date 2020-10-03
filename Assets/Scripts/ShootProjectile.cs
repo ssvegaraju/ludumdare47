@@ -20,7 +20,7 @@ public class ShootProjectile : MonoBehaviour
     void Update()
     {
         if (Time.time - lastFireTime > fireRate && Input.GetMouseButtonDown(0)) {
-            Shoot();
+            // Shoot();
         }
     }
 
