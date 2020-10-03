@@ -7,12 +7,14 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed = 10f;
     public float jumpHeight = 5f;
     public float gravity = -9.81f;
-    public Transform groundCheck;
     public float groundDistance = 0.4f;
+    public Transform groundCheck;
+    
     public LayerMask groundMask;
     private bool isGrounded;
     private CharacterController controller;
     private float yVel;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
