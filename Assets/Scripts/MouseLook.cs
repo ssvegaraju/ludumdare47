@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Shapes;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,16 +8,17 @@ public class MouseLook : MonoBehaviour
     public float mouseSensitivity = 100f;
 
     public Transform playerBody;
+    public GameObject spawnDisc;
 
     public float targetDistance = 150f;
 
     public LayerMask freezeLayer;
 
-    public GameObject targetReticle;
+    public Disc targetReticle;
 
     public int maxFreezes = 3;
 
-    private List<TornadoObject> frozenObjects = new List<TornadoObject>();
+    private List<Freezable> frozenObjects = new List<Freezable>();
     
     private float xRotation = 0f;
 
@@ -44,25 +46,45 @@ public class MouseLook : MonoBehaviour
     private void targetObject() {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, transform.forward, out hit, targetDistance, freezeLayer)) {
-            targetReticle.SetActive(true);
+            targetReticle.Color = Color.green;
             if (Input.GetMouseButtonDown(0)) {
                 freezeObject(hit.transform.gameObject.GetComponent<TornadoObject>());
             }
         } else {
-            targetReticle.SetActive(false);
+            targetReticle.Color = Color.white;
         }
     }
 
     private void freezeObject(TornadoObject target) {
         if (target.isStuck) { // is stuck
-            frozenObjects.Remove(target);
+            Freezable f = frozenObjects.Find(x => x.obj == target);
+            f.Delete();
+            frozenObjects.Remove(f);
         } else { // stuckify the object
             if (frozenObjects.Count >= maxFreezes) {
-                frozenObjects[0].isStuck = false;
+                frozenObjects[0].Delete();
                 frozenObjects.RemoveAt(0);
             }
-            frozenObjects.Add(target);
+            frozenObjects.Add(new Freezable(target,
+                Instantiate(spawnDisc, target.transform.position, Quaternion.identity, target.transform)));
         }
-        target.isStuck = !target.isStuck;
+    }
+
+    private struct Freezable
+    {
+        public TornadoObject obj;
+        public GameObject particle;
+
+        public Freezable(TornadoObject obj, GameObject particle) {
+            this.obj = obj;
+            this.particle = particle;
+            obj.isStuck = true;
+        }
+
+        public void Delete() {
+            obj.isStuck = false;
+            Destroy(particle);
+        }
     }
 }
+
