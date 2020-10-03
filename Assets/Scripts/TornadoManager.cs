@@ -8,7 +8,10 @@ public class TornadoManager : MonoBehaviour
     [Tooltip("Controls the height difference between levels")]
     public float levelHeight = 1.5f;
     public int baseLevelRadius = 5;
+    public float radiusMultiplier = 3;
     public int levelMultiplier = 3;
+    public AnimationCurve tornadoCurve;
+    public AnimationCurve amountCurve;
     public GameObject[] objectPrefabs;
 
     private Vector2 randomPos;
@@ -23,8 +26,8 @@ public class TornadoManager : MonoBehaviour
     [ContextMenu("Generate")]
     void GenerateDebris() {
         for (int i = 0; i < levels; i++) {
-            int radius = baseLevelRadius * (i + 1);
-            for (int j = 0; j < i * levelMultiplier; j++) {
+            float radius = baseLevelRadius * tornadoCurve.Evaluate(i * 1.0f / (levels - 1)) * radiusMultiplier;
+            for (int j = 0; j < amountCurve.Evaluate(i * 1.0f / (levels - 1)) * levelMultiplier; j++) {
                 int rand = Random.Range(0, objectPrefabs.Length);
                 randomPos = Random.insideUnitCircle * radius;
                 spawnPos.y = i * levelHeight;
