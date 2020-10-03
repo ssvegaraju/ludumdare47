@@ -2,38 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 10f;
-    public float jumpHeight = 15f;
-    public float rotateSpeed = 120f;
-    public float decelerationAmount = 2f;
-
-    private Rigidbody rigid;
+    public float jumpHeight = 5f;
+    public float gravity = -9.81f;
+    public Transform groundCheck;
+    public float groundDistance = 0.4f;
+    public LayerMask groundMask;
+    private bool isGrounded;
+    private CharacterController controller;
     private float yVel;
-    // Start is called before the first frame update
     void Start()
     {
-        rigid = GetComponent<Rigidbody>();
+        controller = GetComponent<CharacterController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if (Input.GetButtonDown("Jump")) {
+        if (isGrounded && yVel < 0) {
+            yVel = -2f;
+        }
+        Vector3 input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        
+        if (Input.GetButtonDown("Jump") && isGrounded) {
             Jump();
         }
 
-        rigid.velocity += input.normalized;
-        yVel = rigid.velocity.y;
-        yVel += Physics.gravity.y * Time.deltaTime;
-        rigid.velocity = Vector3.Lerp(rigid.velocity, Vector3.up * yVel, decelerationAmount * Time.deltaTime);
+        Vector3 move = transform.right * input.x + transform.forward * input.z;
+        controller.Move(move * moveSpeed * Time.deltaTime);
+
+        yVel += gravity * Time.deltaTime;
+        controller.Move(new Vector3(0, yVel, 0) * Time.deltaTime);
     }
 
     void Jump() {
-        rigid.AddForce(Vector3.up * jumpHeight);
+        yVel += Mathf.Sqrt(jumpHeight * -2f * gravity);
     }
 }
