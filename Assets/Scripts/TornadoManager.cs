@@ -10,6 +10,10 @@ public class TornadoManager : MonoBehaviour
     public int baseLevelRadius = 5;
     public int levelMultiplier = 3;
     public GameObject[] objectPrefabs;
+
+    private Vector2 randomPos;
+    private Vector3 spawnPos;
+    private GameObject obj;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,9 +26,11 @@ public class TornadoManager : MonoBehaviour
             int radius = baseLevelRadius * (i + 1);
             for (int j = 0; j < i * levelMultiplier; j++) {
                 int rand = Random.Range(0, objectPrefabs.Length);
-                Vector3 spawnPos = Random.onUnitSphere * radius;
+                randomPos = Random.insideUnitCircle * radius;
                 spawnPos.y = i * levelHeight;
-                GameObject obj = Instantiate(objectPrefabs[rand], spawnPos, Random.rotation, transform);
+                spawnPos.x = randomPos.x;
+                spawnPos.z = randomPos.y;
+                obj = Instantiate(objectPrefabs[rand], spawnPos, Random.rotation, transform);
             }
         }
     }
