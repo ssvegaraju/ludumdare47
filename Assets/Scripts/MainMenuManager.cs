@@ -13,6 +13,7 @@ public class MainMenuManager : MonoBehaviour
     public Transform menuHolder;
     public Camera mainCam;
     public Image cover;
+    public float animTime = 1f;
 
     private int choiceIndex = 0;
     private float lastInputTime;
@@ -33,13 +34,13 @@ public class MainMenuManager : MonoBehaviour
             return;
         if (!canInput)
             return;
-        float input = Input.GetAxisRaw("Vertical");
-        if (input == 0) {
-            return;
-        }
         if (Input.GetButtonDown("Submit")) {
             buttons[choiceIndex].Press();
             HideMenu();
+            return;
+        }
+        float input = Input.GetAxisRaw("Vertical");
+        if (input == 0) {
             return;
         }
         int temp = choiceIndex;
@@ -47,20 +48,29 @@ public class MainMenuManager : MonoBehaviour
         choiceIndex = Mod(choiceIndex, buttons.Length);
         buttons[temp].Deselect();
         buttons[choiceIndex].Hover();
+        lastInputTime = Time.time;
     }
     
     public void LoadLevel() {
+        Debug.Log("Loading level");
         StartCoroutine(LoadingAnim());
     }
 
+    public void QuitGame() {
+        Application.Quit();
+    }
+
     private IEnumerator LoadingAnim() {
+        cover.gameObject.SetActive(true);
         float startTime = Time.time;
-        cover.CrossFadeAlpha(1, 0.3f, true);
-        while (Time.time - startTime <= 0.3f) {
-            mainCam.fieldOfView = Mathf.Lerp(90, 172, (Time.time - startTime) / 0.3f);
+        cover.CrossFadeAlpha(0, 0.1f, false);
+        yield return new WaitForSeconds(0.1f);
+        cover.CrossFadeAlpha(1, animTime, false);
+        while (Time.time - startTime <= animTime) {
+            mainCam.fieldOfView = Mathf.Lerp(90, 172, (Time.time - startTime) / animTime);
             yield return null;
         }
-
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
 
     private void HideMenu() {
