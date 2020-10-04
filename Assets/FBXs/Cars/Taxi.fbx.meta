@@ -3,7 +3,37 @@ guid: f8c21bc7c49d29b449b8956249604688
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black
+    second: {fileID: 2100000, guid: b906f9c83371c154f92c150b00a4ea39, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grey
+    second: {fileID: 2100000, guid: f7d6d1b299f2dc646bcf5c9fb89a583a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Headlights
+    second: {fileID: 2100000, guid: 659937bd603760d46a33eccc77330ed6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TailLights
+    second: {fileID: 2100000, guid: 3bb64974f00acfa4b8f8f3240f010892, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Windows
+    second: {fileID: 2100000, guid: d967ae4a20537bd4ca93a1b0c4e61398, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Yellow
+    second: {fileID: 2100000, guid: 0b0294e31f7e7e34ba6d953a92c6c15d, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

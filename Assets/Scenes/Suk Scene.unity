@@ -1370,7 +1370,7 @@ PrefabInstance:
     - target: {fileID: 554242947699942453, guid: d394a1a5935dece4889119fb6010dad9,
         type: 3}
       propertyPath: objectPrefabs.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 554242947699942453, guid: d394a1a5935dece4889119fb6010dad9,
         type: 3}
@@ -1383,6 +1383,12 @@ PrefabInstance:
       propertyPath: objectPrefabs.Array.data[2]
       value: 
       objectReference: {fileID: 1124031362280050941, guid: cd09719025c73514f92e88c79fa9df79,
+        type: 3}
+    - target: {fileID: 554242947699942453, guid: d394a1a5935dece4889119fb6010dad9,
+        type: 3}
+      propertyPath: objectPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 938744183243019400, guid: 195efc94bcab5ec4d9a1d2ae0f782765,
         type: 3}
     - target: {fileID: 554242947699942458, guid: d394a1a5935dece4889119fb6010dad9,
         type: 3}
