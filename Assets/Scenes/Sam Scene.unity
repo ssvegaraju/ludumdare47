@@ -1519,23 +1519,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   masterVolume: 1
   sounds:
-  - name: 
-    loop: 0
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: gameLoop
+    loop: 1
+    clip: {fileID: 8300000, guid: a8f4a2c5a9610394a94bf7730e71e20e, type: 3}
+    volume: 0.08
+    pitch: 1
     source: {fileID: 0}
-  - name: 
-    loop: 0
-    clip: {fileID: 0}
+  - name: footsteps
+    loop: 1
+    clip: {fileID: 8300000, guid: 332edca16dc760a4696292695562bd26, type: 3}
     volume: 0
-    pitch: 0
+    pitch: 1
     source: {fileID: 0}
-  - name: 
+  - name: jumpGrunt
     loop: 0
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+    clip: {fileID: 8300000, guid: 83fa5aefcd5b24342b68d5ab184e85b4, type: 3}
+    volume: 0.189
+    pitch: 1
+    source: {fileID: 0}
+  - name: land
+    loop: 0
+    clip: {fileID: 8300000, guid: 0df0038abea3e444a9fa8bfb5f2ae45b, type: 3}
+    volume: 0.543
+    pitch: 1
+    source: {fileID: 0}
+  - name: wub
+    loop: 0
+    clip: {fileID: 8300000, guid: 8b77eae393d35b649b248c9936879f60, type: 3}
+    volume: 0.275
+    pitch: 1
+    source: {fileID: 0}
+  - name: wubAway
+    loop: 0
+    clip: {fileID: 8300000, guid: 64bfe14da5db5e44b929c5101d841b5b, type: 3}
+    volume: 0.275
+    pitch: 1
     source: {fileID: 0}
 --- !u!4 &1904518731
 Transform:
