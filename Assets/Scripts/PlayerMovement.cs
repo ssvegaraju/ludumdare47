@@ -79,6 +79,7 @@ public class PlayerMovement : MonoBehaviour
     void OnTriggerEnter(Collider other) {
         if (other.gameObject.tag == "Checkpoint" && other.transform.GetChild(0).position.y > checkpoint.y) {
             checkpoint = other.transform.GetChild(0).position;
+            AudioManager.instance.Play("hooray");
         } else if (other.gameObject.tag == "Goal") {
             GetComponent<Timer>().StopTimer();
             Application.Quit();
