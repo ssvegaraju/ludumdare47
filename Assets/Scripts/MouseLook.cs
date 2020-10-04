@@ -67,11 +67,16 @@ public class MouseLook : MonoBehaviour
             Freezable f = frozenObjects.Find(x => x.obj == target);
             f.Delete();
             frozenObjects.Remove(f);
+            AudioManager.instance.Play("wubAway");
+            if (AudioManager.instance.IsPlaying("wub")) {
+                AudioManager.instance.Stop("wub");
+            }
         } else { // stuckify the object
             if (frozenObjects.Count >= maxFreezes) {
                 frozenObjects[0].Delete();
                 frozenObjects.RemoveAt(0);
             }
+            AudioManager.instance.Play("wub");
             frozenObjects.Add(new Freezable(target,
                 Instantiate(spawnDisc, target.transform.position, Quaternion.identity, target.transform)));
         }

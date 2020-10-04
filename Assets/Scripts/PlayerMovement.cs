@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundMask;
     public float respawnY = 10f;
-    public bool debug = false;
+    public bool debugMode = false;
     private bool isGrounded;
     private CharacterController controller;
     private float yVel;
@@ -21,21 +21,35 @@ public class PlayerMovement : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         checkpoint = transform.position;
+        AudioManager.instance.Play("gameLoop");
+        AudioManager.instance.Play("footsteps");
     }
 
     void Update()
     {
+        bool prevGrounded = isGrounded;
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        if (!prevGrounded && isGrounded != prevGrounded) {
+            AudioManager.instance.Play("land");
+        }
 
         if (isGrounded && yVel < 0) {
             yVel = -2f;
         }
         Vector3 input = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+
+        if (isGrounded && input != Vector3.zero) {
+            AudioManager.instance.ChangeSoundVolume("footsteps", 0.4f);
+        } else {
+            AudioManager.instance.ChangeSoundVolume("footsteps", 0f);
+        }
         
         if (Input.GetButtonDown("Jump") && isGrounded) {
             Jump();
+            AudioManager.instance.Play("jumpGrunt");
         }
-        Debug();
+        DebugMode();
 
         Vector3 move = transform.right * input.x + transform.forward * input.z;
         controller.Move(move * moveSpeed * Time.deltaTime);
@@ -46,8 +60,8 @@ public class PlayerMovement : MonoBehaviour
         RespawnIfNecessary();
     }
 
-    void Debug() {
-        if (Input.GetButtonDown("Jump") && debug) {
+    void DebugMode() {
+        if (Input.GetButtonDown("Jump") && debugMode) {
             Jump();
         }
     }
