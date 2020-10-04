@@ -18,6 +18,10 @@ public class MouseLook : MonoBehaviour
 
     public int maxFreezes = 3;
 
+    public float endBuffer = 0.5f;
+    private int curTime = 0;
+    private TornadoObject prevTarget;
+
     private List<Freezable> frozenObjects = new List<Freezable>();
     
     private float xRotation = 0f;
@@ -49,9 +53,12 @@ public class MouseLook : MonoBehaviour
             targetReticle.Color = Color.green;
             if (Input.GetMouseButtonDown(0)) {
                 freezeObject(hit.transform.gameObject.GetComponent<TornadoObject>());
+            } else {
+                prevTarget = hit.transform.gameObject.GetComponent<TornadoObject>();
+                curTime = 0;
             }
         } else {
-            targetReticle.Color = Color.white;
+            handlePrevTarget();
         }
     }
 
@@ -67,6 +74,22 @@ public class MouseLook : MonoBehaviour
             }
             frozenObjects.Add(new Freezable(target,
                 Instantiate(spawnDisc, target.transform.position, Quaternion.identity, target.transform)));
+        }
+    }
+
+    private void handlePrevTarget() {
+        if (prevTarget != null) {
+            curTime++;
+            if (curTime / 60.0 > endBuffer) {
+                curTime = 0;
+                prevTarget = null;
+                targetReticle.Color = Color.white;
+            } else {
+                targetReticle.Color = Color.green;
+                if (Input.GetMouseButtonDown(0)) {
+                    freezeObject(prevTarget);
+                }
+            }
         }
     }
 
