@@ -8,9 +8,10 @@ public class Timer : MonoBehaviour
 {
     public bool timerIsRunning = false;
     public float time = 0;
-    public GameObject textMesh;
+    public TextMeshPro textMesh;
 
     private void Start() {
+        GetComponent<PlayerMovement>().OnReachedGoal += StopTimer;
         // Starts the timer automatically
         timerIsRunning = true;
     }
@@ -28,7 +29,7 @@ public class Timer : MonoBehaviour
         float minutes = Mathf.FloorToInt(timeToDisplay / 60); 
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
 
-        textMesh.GetComponent<TextMeshPro>().SetText(string.Format("{0:00}:{1:00}", minutes, seconds));
+        textMesh.SetText(string.Format("{0:00}:{1:00}", minutes, seconds));
     }
 
     public void StopTimer() {

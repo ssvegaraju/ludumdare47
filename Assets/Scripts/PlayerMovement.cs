@@ -17,6 +17,8 @@ public class PlayerMovement : MonoBehaviour
     private float yVel;
     private Vector3 checkpoint;
 
+    public event System.Action OnReachedGoal;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -81,8 +83,12 @@ public class PlayerMovement : MonoBehaviour
             checkpoint = other.transform.GetChild(0).position;
             AudioManager.instance.Play("hooray");
         } else if (other.gameObject.tag == "Goal") {
-            GetComponent<Timer>().StopTimer();
-            UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+            OnReachedGoal?.Invoke();
+            GoalReached();
         }
+    }
+
+    private void GoalReached() {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
     }
 }
