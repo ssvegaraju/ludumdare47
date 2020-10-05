@@ -1891,6 +1891,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 866216003194401776, guid: 8eba0c25892b5bd4880180dcd6370a3c,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6779479417492692121, guid: 8eba0c25892b5bd4880180dcd6370a3c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2108,6 +2113,11 @@ PrefabInstance:
         type: 3}
       propertyPath: respawnY
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6582181200712596505, guid: 20fe69cc54068424c866eca5f139bf4c,
+        type: 3}
+      propertyPath: groundMask.m_Bits
+      value: 1280
       objectReference: {fileID: 0}
     - target: {fileID: 6582181202019161081, guid: 20fe69cc54068424c866eca5f139bf4c,
         type: 3}
