@@ -34,6 +34,7 @@ public class Timer : MonoBehaviour
 
     public void StopTimer() {
         timerIsRunning = false;
+        PlayerPrefs.SetString("time", textMesh.text);
     }
     public void StartTimer() {
         timerIsRunning = true;

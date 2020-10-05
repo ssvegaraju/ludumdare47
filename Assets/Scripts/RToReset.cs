@@ -1,8 +1,13 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class RToReset : MonoBehaviour
 {
+
+    private void Start() {
+        FindObjectOfType<TextMeshProUGUI>().text += "\nTime: " + PlayerPrefs.GetString("time", "0:00s");
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.R)) {
