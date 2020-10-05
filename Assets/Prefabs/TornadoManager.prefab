@@ -98,3 +98,10 @@ MonoBehaviour:
     m_RotationOrder: 4
   objectPrefabs:
   - {fileID: 7696617917218842331, guid: ed5b6a20454f1124fa4050498034f43c, type: 3}
+  - {fileID: 7614379528046756651, guid: dd2d41fb52602ce44a6aab21307e5baf, type: 3}
+  - {fileID: 1124031362280050941, guid: cd09719025c73514f92e88c79fa9df79, type: 3}
+  - {fileID: 938744183243019400, guid: 195efc94bcab5ec4d9a1d2ae0f782765, type: 3}
+  - {fileID: 6100791215311634226, guid: 44a7869f06eb5a146bce4a357aaf0747, type: 3}
+  - {fileID: 5537497310699501805, guid: d88f9e5c8695c1e4b9645d61c36beb0f, type: 3}
+  - {fileID: 3098813610187511737, guid: 0a980b161439eed46a8e15ea4046d4b2, type: 3}
+  - {fileID: 1498515876406514636, guid: 9dab167039d0ea24488d51299c1a33fc, type: 3}

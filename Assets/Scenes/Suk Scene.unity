@@ -1367,29 +1367,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 554242947699942453, guid: d394a1a5935dece4889119fb6010dad9,
-        type: 3}
-      propertyPath: objectPrefabs.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 554242947699942453, guid: d394a1a5935dece4889119fb6010dad9,
-        type: 3}
-      propertyPath: objectPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 7614379528046756651, guid: dd2d41fb52602ce44a6aab21307e5baf,
-        type: 3}
-    - target: {fileID: 554242947699942453, guid: d394a1a5935dece4889119fb6010dad9,
-        type: 3}
-      propertyPath: objectPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 1124031362280050941, guid: cd09719025c73514f92e88c79fa9df79,
-        type: 3}
-    - target: {fileID: 554242947699942453, guid: d394a1a5935dece4889119fb6010dad9,
-        type: 3}
-      propertyPath: objectPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 938744183243019400, guid: 195efc94bcab5ec4d9a1d2ae0f782765,
-        type: 3}
     - target: {fileID: 554242947699942458, guid: d394a1a5935dece4889119fb6010dad9,
         type: 3}
       propertyPath: m_LocalPosition.x
