@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
             AudioManager.instance.Play("hooray");
         } else if (other.gameObject.tag == "Goal") {
             GetComponent<Timer>().StopTimer();
-            Application.Quit();
+            UnityEngine.SceneManagement.SceneManager.LoadScene(2);
         }
     }
 }
